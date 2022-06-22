@@ -1,0 +1,17 @@
+<div class="container-xxl">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <div class="me-5">
+                <a [routerLink]="['']" routerLinkActive="router-link-active"
+                    style="text-decoration: inherit; color: inherit;">
+                    <h2>DBL<span style="color: blue;">TV</span></h2>
+                </a>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <a href="https://www.davidboclag.com" style="text-decoration: inherit; color: inherit;">
+                By David Bocanegra
+            </a>
+        </ng-template>
+    </p-menubar>
+</div>

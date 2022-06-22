@@ -1,0 +1,91 @@
+<div class="container-xxl" *ngIf="(details | json) != '{}'">
+    <div class="p-5 mb-4 mt-3 bg-light rounded-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <img src="https://image.tmdb.org/t/p/original{{details.poster_path}}" class="img-fluid img-thumbnail"
+                    alt="details.title">
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <h2>{{(isMovie) ? details.title : details.name}}</h2>
+                <div>
+                    <span>{{details.release_date}}</span>
+                    <span> - </span>
+                    <span>{{getGenresById(details.genres)}}</span>
+                </div>
+                <div class="row mt-3">
+                    <p-slider [(ngModel)]="ratingPorcentaje" [step]="0.1" [disabled]="true"></p-slider>
+                    <p>{{ratingPorcentaje}}% puntuación de usuario de {{details.vote_count}} votes</p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="fst-italic">{{details.tagline}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>Vista general</h4>
+                        <p>{{details.overview}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <p-virtualScroller [value]="recommendations.results" scrollHeight="600px" [itemSize]="200" [rows]="100"
+            [lazy]="true" (onLazyLoad)="loadRecommendationsLazy($event)">
+            <ng-template pTemplate="header">
+                SIMILARES
+            </ng-template>
+            <ng-template let-recommendation pTemplate="item" let-i="index">
+                <div class="recommendation-item">
+                    <div class="image-container">
+                        <a *ngIf="isMovie" [routerLink]="['/movie/']+recommendation.id"
+                            routerLinkActive="router-link-active">
+                            <img src="https://image.tmdb.org/t/p/original{{recommendation.poster_path}}"
+                                [alt]="recommendation.title" class="img-fluid img-thumbnail" />
+                        </a>
+                        <a *ngIf="!isMovie" [routerLink]="['/tv/']+recommendation.id"
+                            routerLinkActive="router-link-active">
+                            <img src="https://image.tmdb.org/t/p/original{{recommendation.poster_path}}"
+                                [alt]="recommendation.title" class="img-fluid img-thumbnail" />
+                        </a>
+                    </div>
+                    <div class="recommendation-list-detail">
+                        <a *ngIf="isMovie" [routerLink]="['/movie/']+recommendation.id"
+                            routerLinkActive="router-link-active">
+                            <h5 class="p-mb-2">{{recommendation.title}}</h5>
+                        </a>
+                        <a *ngIf="!isMovie" [routerLink]="['/tv/']+recommendation.id"
+                            routerLinkActive="router-link-active">
+                            <h5 class="p-mb-2">{{recommendation.name}}</h5>
+                        </a>
+                        <i class="pi pi-tag recommendation-category-icon"></i>
+                        <span
+                            class="recommendation-category">{{getGenresRecommendationById(recommendation.genre_ids)}}</span>
+                    </div>
+                    <div class="recommendation-list-action">
+                        <h6 class="p-mb-2">{{(isMovie) ? recommendation.release_date :
+                            recommendation.first_air_date}}</h6>
+                        <!-- <span
+                            [class]="'recommendation-badge status-' + recommendation.inventoryStatus.toLowerCase()">{{recommendation.inventoryStatus}}</span> -->
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template let-recommendation pTemplate="loadingItem">
+                <div class="recommendation-item loading-item">
+                    <div class="image-container"></div>
+                    <div class="recommendation-list-detail">
+                        <h5 class="p-mb-2"></h5>
+                        <i class="recommendation-category-icon"></i>
+                        <span class="recommendation-category"></span>
+                    </div>
+                    <div class="recommendation-list-action">
+                        <h6 class="p-mb-2"></h6>
+                        <span class="recommendation-badge"></span>
+                    </div>
+                </div>
+            </ng-template>
+        </p-virtualScroller>
+    </div>
+</div>

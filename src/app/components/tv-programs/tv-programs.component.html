@@ -1,0 +1,59 @@
+<div class="container-xxl mt-3">
+    <div class="card">
+        <p-dataView #dv [value]="tvPrograms" [paginator]="true" [rows]="rows" [lazy]="true"
+            (onLazyLoad)="loadData($event)" [totalRecords]="totalRecords" filterBy="name" layout="list"
+            [rowsPerPageOptions]="[5, 10, 15, 20]">
+            <ng-template pTemplate="header">
+                <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                    <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                        <i class="pi pi-search"></i>
+                        <input type="search" pInputText placeholder="Search by Name"
+                            (input)="dv.filter($any($event.target).value)">
+                    </span>
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </ng-template>
+            <ng-template let-tvProgram pTemplate="listItem">
+                <div class="p-col-12">
+                    <div class="tv-program-list-item">
+                        <a [routerLink]="tvProgram.id" routerLinkActive="router-link-active">
+                            <img src='https://image.tmdb.org/t/p/original{{tvProgram.poster_path}}'
+                                class="img-fluid img-thumbnail" [alt]="tvProgram.name" /></a>
+                        <div class="tv-program-list-detail">
+                            <a [routerLink]="tvProgram.id" routerLinkActive="router-link-active">
+                                <div class="tv-program-title">{{tvProgram.name}}</div>
+                            </a>
+                            <div class="tv-program-overview">{{tvProgram.overview}}</div>
+                            <p-rating [ngModel]="tvProgram.vote_average" [stars]="10" [readonly]="true"
+                                [cancel]="false">
+                            </p-rating>
+                            <span>{{tvProgram.vote_average}} of {{tvProgram.vote_count}} votes</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template let-tvProgram pTemplate="gridItem">
+                <div class="p-col-12 p-md-6 p-xl-4">
+                    <div class="tv-program-grid-item card h-100">
+                        <img src='https://image.tmdb.org/t/p/original{{tvProgram.poster_path}}'
+                            class="img-fluid img-thumbnail" [alt]="tvProgram.name" />
+                        <div class="tv-program-grid-item-content">
+                            <a [routerLink]="tvProgram.id" routerLinkActive="router-link-active">
+                                <div class="tv-program-title">{{tvProgram.name}}</div>
+                            </a>
+                            <div class="tv-program-overview">{{tvProgram.overview}}</div>
+                            <div class="tv-program-category">
+                                <i class="pi pi-tag tv-program-category-icon"></i>
+                                <span>{{getGenreTvProgramById(tvProgram.genre_ids)}}</span>
+                            </div>
+                            <p-rating [ngModel]="tvProgram.vote_average" [stars]="10" [readonly]="true"
+                                [cancel]="false">
+                            </p-rating>
+                            <span>{{tvProgram.vote_average}} of {{tvProgram.vote_count}} votes</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
+</div>

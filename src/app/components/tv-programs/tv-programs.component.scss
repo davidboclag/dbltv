@@ -1,0 +1,149 @@
+:host ::ng-deep {
+    .p-dropdown {
+        width: 14rem;
+        font-weight: normal;
+    }
+    
+    .tv-program-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .tv-program-overview {
+        margin: 0 0 1rem 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .tv-program-category-icon {
+        vertical-align: middle;
+        margin-right: .5rem;
+    }
+    
+    .tv-program-category {
+        font-weight: 600;
+        vertical-align: middle;
+    }
+    
+    .tv-program-list-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+    
+        img {
+            width: 150px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            margin-right: 2rem;
+        }
+    
+        .tv-program-list-detail {
+            flex: 1 1 0;
+        }
+    
+        .p-rating {
+            margin: 0 0 .5rem 0;
+        }
+    
+        .tv-program-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            align-self: flex-end;
+        }
+    
+        .tv-program-list-action {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .p-button {
+            margin-bottom: .5rem;
+        }
+    }
+    
+    .tv-program-grid-item {
+        margin: .5em;
+        border: 1px solid #dee2e6;
+    
+        .tv-program-grid-item-top,
+        .tv-program-grid-item-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1em;
+        }
+    
+        img {
+            width: 100%;
+            display:block;
+            margin:auto;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .p-rating {
+            margin: 1rem 0 0.5rem 0
+        }
+    
+        .tv-program-grid-item-content {
+            text-align: center;
+        }
+    
+        .tv-program-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .tv-program-title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 75px;
+            max-height: 75px;
+        }
+    }
+}
+
+.card-tv-program,
+.card {
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 576px) {
+	:host ::ng-deep .tv-program-list-item {
+		flex-direction: column;
+		align-items: center;
+
+		img {
+			width: 75%;
+			margin: 2rem 0;
+		}
+
+		.tv-program-list-detail {
+			text-align: center;
+		}
+
+		.tv-program-price {
+			align-self: center;
+		}
+
+		.tv-program-list-action {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.tv-program-list-action {
+			margin-top: 2rem;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+		}
+	}
+}
