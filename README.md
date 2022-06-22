@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Desplegar cambios en el servidor
 
-ng build --configuration=production
+ng build --configuration=production  
 firebase deploy
 
 ## Para ver la web
